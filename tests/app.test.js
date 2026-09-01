@@ -3,11 +3,10 @@ const test = require('node:test');
 const request = require('supertest');
 const app = require('../src/app');
 
-test('GET / returns API health message', async () => {
+test('GET / returns todo UI', async () => {
   const response = await request(app).get('/').expect(200);
 
-  assert.strictEqual(response.body.success, true);
-  assert.strictEqual(response.body.message, 'DevOps Todo API is running');
+  assert.match(response.text, /<title>DevOps Todos<\/title>/);
 });
 
 test('GET /missing returns 404 JSON response', async () => {

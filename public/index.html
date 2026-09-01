@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>DevOps Todos</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <section class="workspace" aria-label="Todo workspace">
+        <header class="topbar">
+          <div>
+            <p class="eyebrow">DevOps Board</p>
+            <h1>Todos</h1>
+          </div>
+          <div class="status-pill" id="connectionStatus">Connecting</div>
+        </header>
+
+        <section class="summary" aria-label="Todo summary">
+          <div>
+            <span class="summary-value" id="totalCount">0</span>
+            <span class="summary-label">Total</span>
+          </div>
+          <div>
+            <span class="summary-value" id="openCount">0</span>
+            <span class="summary-label">Open</span>
+          </div>
+          <div>
+            <span class="summary-value" id="doneCount">0</span>
+            <span class="summary-label">Done</span>
+          </div>
+        </section>
+
+        <form class="todo-form" id="todoForm" autocomplete="off">
+          <div class="field-group">
+            <label for="title">Title</label>
+            <input id="title" name="title" type="text" maxlength="120" required />
+          </div>
+          <div class="field-group">
+            <label for="description">Description</label>
+            <input id="description" name="description" type="text" maxlength="500" />
+          </div>
+          <button class="primary-button" type="submit">Add</button>
+        </form>
+
+        <div class="toolbar" aria-label="Todo filters">
+          <div class="segmented" role="tablist" aria-label="Filter todos">
+            <button class="segment active" type="button" data-filter="all">All</button>
+            <button class="segment" type="button" data-filter="open">Open</button>
+            <button class="segment" type="button" data-filter="done">Done</button>
+          </div>
+          <button class="ghost-button" id="refreshButton" type="button">Refresh</button>
+        </div>
+
+        <p class="notice" id="notice" role="status"></p>
+        <section class="todo-list" id="todoList" aria-live="polite"></section>
+      </section>
+    </main>
+
+    <dialog class="edit-dialog" id="editDialog">
+      <form method="dialog" class="edit-panel" id="editForm">
+        <header class="dialog-header">
+          <h2>Edit Todo</h2>
+          <button class="icon-button" type="button" id="closeDialog" aria-label="Close">x</button>
+        </header>
+        <input type="hidden" id="editId" />
+        <div class="field-group">
+          <label for="editTitle">Title</label>
+          <input id="editTitle" type="text" maxlength="120" required />
+        </div>
+        <div class="field-group">
+          <label for="editDescription">Description</label>
+          <textarea id="editDescription" maxlength="500" rows="4"></textarea>
+        </div>
+        <label class="check-row" for="editCompleted">
+          <input id="editCompleted" type="checkbox" />
+          <span>Completed</span>
+        </label>
+        <div class="dialog-actions">
+          <button class="ghost-button" type="button" id="cancelEdit">Cancel</button>
+          <button class="primary-button" type="submit">Save</button>
+        </div>
+      </form>
+    </dialog>
+
+    <script src="/app.js"></script>
+  </body>
+</html>

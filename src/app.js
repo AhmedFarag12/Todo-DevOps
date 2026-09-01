@@ -2,19 +2,19 @@ require('dotenv').config();
 
 const cors = require('cors');
 const express = require('express');
+const path = require('path');
 const connectDB = require('./config/db');
 const todoRoutes = require('./routes/todoRoutes');
 
 const app = express();
+const publicDir = path.join(__dirname, '..', 'public');
 
 app.use(cors());
 app.use(express.json());
+app.use(express.static(publicDir));
 
 app.get('/', (_req, res) => {
-  res.status(200).json({
-    success: true,
-    message: 'DevOps Todo API is running',
-  });
+  res.sendFile(path.join(publicDir, 'index.html'));
 });
 
 app.use('/api/todos', todoRoutes);
