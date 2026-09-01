@@ -1,0 +1,25 @@
+{
+  "name": "devops-todo-api",
+  "version": "1.0.0",
+  "description": "Simple Express and MongoDB Todo API.",
+  "license": "ISC",
+  "author": "ahmed farag",
+  "type": "commonjs",
+  "main": "src/app.js",
+  "scripts": {
+    "dev": "nodemon src/app.js",
+    "seed": "node src/seed/todoSeed.js",
+    "start": "node src/app.js",
+    "test": "node --test"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "mongoose": "^8.9.5"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.9",
+    "supertest": "^7.0.0"
+  }
+}
